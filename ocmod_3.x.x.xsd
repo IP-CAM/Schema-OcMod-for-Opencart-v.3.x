@@ -18,7 +18,7 @@
 
     </xs:attribute>
                                             
-    <xs:attribute name="index">                                                    
+    <xs:attribute name="index">                                  
         <xs:annotation>
             <xs:documentation xml:lang="en"><![CDATA[
                 Необов'язковий, вказує на які екземпляри пошукового тегу слід виконувати<br>
@@ -46,7 +46,7 @@
             </xs:documentation>
         </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="trim">
+    <xs:attribute name="trim"  type="xs:boolean">
         <xs:annotation>
             <xs:documentation xml:lang="en"><![CDATA[
                 Необов'язковий атрибут "trim" встановлюється як true | false
@@ -72,75 +72,7 @@
         </xs:annotation>                                                    
     </xs:attribute>
     
-    <xs:attribute name="position">
-        <xs:annotation>
-            <xs:documentation><![CDATA[
-                Обов'язковий атрибут "позиція" встановлюється before|after|replace|top|bottom 
-                замінити замінить дані в тезі пошуку на дані в тезі додавання . (за умовчанням)
-                перед тим, як вставити дані додати до даних пошуку
-                після додавати дані після даних пошуку
-                top буде вставляти дані додавання у верхній частині файлу. Дані пошуку ігноруються.
-                Внизу буде вставлено дані додавання в нижній частині файлу. Дані пошуку ігноруються.
-                все буде повністю замінити весь код у файлі з додаванням даних. Дані пошуку ігноруються. Застарілий станом на 2.4.0
-                Перед тим, як вставити код перед пошуковим рядком, замість рядка
-                Після цього буде вставлено код після пошуку в рядку замість рядка 
-                ]]>
-            </xs:documentation>
-        </xs:annotation>
-        
-        <xs:simpleType>                                                        
-            <xs:restriction base="xs:string">
-                <xs:enumeration value="replace">
-                    <xs:annotation>
-                        <xs:documentation xml:lang="en"><![CDATA[
-                            will replace the data in the search tag with the data in the add tag. (default)
-                        ]]>
-                        </xs:documentation>
-                        <xs:documentation xml:lang="ru"><![CDATA[
-                            заменит данные в теге search на данные в теге add. (по умолчанию)
-                        ]]>
-                        </xs:documentation>
-                        <xs:documentation xml:lang="ua"><![CDATA[
-                            замінить дані в тегу search на дані в тезі add. (за замовчуванням)
-                        ]]>
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:enumeration>
-                <xs:enumeration value="before">
-                    <xs:annotation>
-                        <xs:documentation xml:lang="en"><![CDATA[
-                            will insert the add data before the search data
-                        ]]>
-                        </xs:documentation>
-                        <xs:documentation xml:lang="ru"><![CDATA[
-                            вставит добавить данные перед поиском данных
-                        ]]>
-                        </xs:documentation>
-                        <xs:documentation xml:lang="ua"><![CDATA[
-                            вставить додані дані перед пошуковими даними
-                        ]]>
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:enumeration>
-                <xs:enumeration value="after">
-                    <xs:annotation>
-                        <xs:documentation xml:lang="en"><![CDATA[
-                            will insert the add data after the search data
-                        ]]>
-                        </xs:documentation>
-                        <xs:documentation xml:lang="ru"><![CDATA[
-                            вставит добавить данные после поиска данных
-                        ]]>
-                        </xs:documentation>
-                        <xs:documentation xml:lang="ua"><![CDATA[
-                            додасть дані після пошуку даних
-                        ]]>
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:enumeration>
-            </xs:restriction>
-        </xs:simpleType>
-    </xs:attribute>
+    
     
     <xs:simpleType name="error">
         <xs:restriction base="xs:string">
@@ -148,14 +80,6 @@
                 <xs:annotation>                                
                     <xs:documentation><![CDATA[
                         означає, що він просто ігноруватиме цей файл
-                        ]]>
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="log">
-                <xs:annotation>                     
-                    <xs:documentation><![CDATA[
-                        такий же, як і пропуск, але реєструє помилку. (за умовчанням)
                         ]]>
                     </xs:documentation>
                 </xs:annotation>
@@ -184,23 +108,53 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="operation">
-                                <xs:complexType>                                    
-                                    <xs:sequence>
-                                        
+                                <xs:complexType>
+                                    <xs:sequence>                                        
                                         <xs:element name="search">
-                                            <xs:complexType  mixed="true">                                                
-                                                <xs:attribute ref="regex" use="optional" default="true" type="xs:boolean"/>
+                                            <xs:complexType mixed="true">                                                
+                                                <xs:attribute ref="regex" use="optional" default="true"/>
                                                 <xs:attribute ref="index" use="optional"/>
                                                 <xs:attribute ref="trim" use="optional"/> 
+                                                <xs:attribute ref="limit" use="optional"/> 
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="add">
-                                            <xs:complexType>
-                                                <xs:attribute ref="position" use="required"/>
+                                            <xs:complexType   mixed="true">
+                                                <xs:attribute name="position">
+                                                    <xs:annotation>            
+                                                        <xs:documentation xml:lang="ua"><![CDATA[
+                                                        Обов'язковий атрибут, встановлюється:<br>
+                                                            before  - вставить додати дані перед пошуком даних<br>
+                                                            after   - додасть дані після пошуку даних<br>
+                                                            replace - замінить дані в тегу пошуку на дані в тезі add. (за замовчуванням)
+                                                        ]]>
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+        
+                                                    <xs:simpleType>                                                        
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="replace"/>
+                                                            <xs:enumeration value="before"/>
+                                                            <xs:enumeration value="after"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="error" type="error"/>  
+                                    <xs:attribute name="error" type="error"/> 
+                                    <xs:attribute name="ignoreif" use="optional"  default="false" type="xs:boolean">
+                                        <xs:annotation>            
+                                            <xs:documentation xml:lang="ua"><![CDATA[
+Це дозволяє здійснювати пошук по файлу. Цей пошук працює в декількох рядках, а не лише в одних. 
+Цей тег необов’язковий, і якщо пошук знайдений, операція пропускається
+Необов'язковий атрибут "regex" встановлений на true | false.
+Для формату даних всередині тегу потрібні роздільники для регулярного вираження, оскільки він
+використовує стандартний метод preg_match для php. Цей атрибут за замовчуванням відповідає false
+                                                        ]]>
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>  
                                 </xs:complexType>
                             </xs:element>                            
                         </xs:sequence>
@@ -210,7 +164,28 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="error" type="error"/>  
+                        <xs:attribute name="error">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="skip">
+                                        <xs:annotation>                                
+                                            <xs:documentation><![CDATA[
+                        означає, що він просто ігноруватиме цей файл
+                        ]]>
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="abort">
+                                        <xs:annotation>                                
+                                            <xs:documentation><![CDATA[
+                        означає ввести помилку і скасувати інші операції в цьому конкретному XML-скрипті. Він не повертає зміни до інших файлів, вже зроблених у цьому сценарії, і не зупиняє інші файли XML.
+                        ]]>
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
                     </xs:complexType>                                     
                 </xs:element>
             </xs:sequence>
