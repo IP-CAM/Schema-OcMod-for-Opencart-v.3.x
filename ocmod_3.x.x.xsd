@@ -6,11 +6,13 @@
     <xs:attribute name="regex" type="xs:boolean" default="false">
         <xs:annotation>
             <xs:documentation>
+            <![CDATA[
                 Необов'язковий атрибут "regex" для вказівки, чи слід шукати шаблон регулярного виразу.
                 default=true
                 Якщо вірно, дані пошуку повинні бути дійсними шаблонами регулярних виразів
                 Залишити або встановити значення FALSE для звичайного пошуку рядків (за умовчанням)
                 Не застосовується до і iafter 
+                ]]>
             </xs:documentation>
         </xs:annotation>                                                    
 
@@ -23,38 +25,42 @@
                 default=true
                 Якщо рядок пошуку є "ехо" і є 5 ехо в файлі, але тільки хочете замінити 1 і 3, використовуйте index = "1,3"
                 Розмежовані комами для декількох екземплярів, які починаються з "1" - невірно з "0"
-                Залиште або встановіть значення FALSE, щоб замінити всі екземпляри. (значення за умовчанням - істина) ]]>
+                Залиште або встановіть значення FALSE, щоб замінити всі екземпляри. (значення за умовчанням - істина) 
+                ]]>
             </xs:documentation>
-            <xs:documentation xml:lang="ru">
+            <xs:documentation xml:lang="ru"><![CDATA[
                 Необов'язковий, вказує на які екземпляри пошукового тегу слід виконувати2
                 default=true
                 Якщо рядок пошуку є "ехо" і є 5 ехо в файлі, але тільки хочете замінити 1 і 3, використовуйте index = "1,3"
                 Розмежовані комами для декількох екземплярів, які починаються з "1" - невірно з "0"
                 Залиште або встановіть значення FALSE, щоб замінити всі екземпляри. (значення за умовчанням - істина) 
+                ]]>
             </xs:documentation>
-            <xs:documentation xml:lang="ua">
+            <xs:documentation xml:lang="ua"><![CDATA[
                 Необов'язковий, вказує на які екземпляри пошукового тегу слід виконувати3
                 default=true
                 Якщо рядок пошуку є "ехо" і є 5 ехо в файлі, але тільки хочете замінити 1 і 3, використовуйте index = "1,3"
                 Розмежовані комами для декількох екземплярів, які починаються з "1" - невірно з "0"
                 Залиште або встановіть значення FALSE, щоб замінити всі екземпляри. (значення за умовчанням - істина) 
+                ]]>
             </xs:documentation>
         </xs:annotation>
     </xs:attribute>
     <xs:attribute name="trim">
         <xs:annotation>
-            <xs:documentation>
+            <xs:documentation><![CDATA[
                 Необов'язковий атрибут "trim" встановлюється як true | false
                 default=true
                 true зменшить пробіли і прориви ліній.
                 залиште або встановіть значення true для обрізання. (значення за умовчанням - істина) 
+                ]]>
             </xs:documentation>
         </xs:annotation>                                                    
     </xs:attribute>
     
     <xs:attribute name="position">
         <xs:annotation>
-            <xs:documentation>
+            <xs:documentation><![CDATA[
                 Обов'язковий атрибут "позиція" встановлюється before|after|replace|top|bottom 
                 замінити замінить дані в тезі пошуку на дані в тезі додавання . (за умовчанням)
                 перед тим, як вставити дані додати до даних пошуку
@@ -64,6 +70,7 @@
                 все буде повністю замінити весь код у файлі з додаванням даних. Дані пошуку ігноруються. Застарілий станом на 2.4.0
                 Перед тим, як вставити код перед пошуковим рядком, замість рядка
                 Після цього буде вставлено код після пошуку в рядку замість рядка 
+                ]]>
             </xs:documentation>
         </xs:annotation>
         
@@ -80,22 +87,25 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="skip">
                 <xs:annotation>                                
-                    <xs:documentation>
+                    <xs:documentation><![CDATA[
                         означає, що він просто ігноруватиме цей файл
+                        ]]>
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="log">
                 <xs:annotation>                     
-                    <xs:documentation>
+                    <xs:documentation><![CDATA[
                         такий же, як і пропуск, але реєструє помилку. (за умовчанням)
+                        ]]>
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="abort">
                 <xs:annotation>                                
-                    <xs:documentation>
+                    <xs:documentation><![CDATA[
                         означає ввести помилку і скасувати інші операції в цьому конкретному XML-скрипті. Він не повертає зміни до інших файлів, вже зроблених у цьому сценарії, і не зупиняє інші файли XML.
+                        ]]>
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
