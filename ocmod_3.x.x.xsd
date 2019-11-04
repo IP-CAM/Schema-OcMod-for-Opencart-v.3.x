@@ -48,7 +48,21 @@
     </xs:attribute>
     <xs:attribute name="trim">
         <xs:annotation>
-            <xs:documentation><![CDATA[
+            <xs:documentation xml:lang="en"><![CDATA[
+                Необов'язковий атрибут "trim" встановлюється як true | false
+                default=true
+                true зменшить пробіли і прориви ліній.
+                залиште або встановіть значення true для обрізання. (значення за умовчанням - істина) 
+                ]]>
+            </xs:documentation>
+            <xs:documentation xml:lang="ua"><![CDATA[
+                Необов'язковий атрибут "trim" встановлюється як true | false
+                default=true
+                true зменшить пробіли і прориви ліній.
+                залиште або встановіть значення true для обрізання. (значення за умовчанням - істина) 
+                ]]>
+            </xs:documentation>
+            <xs:documentation xml:lang="ru"><![CDATA[
                 Необов'язковий атрибут "trim" встановлюється як true | false
                 default=true
                 true зменшить пробіли і прориви ліній.
@@ -76,9 +90,54 @@
         
         <xs:simpleType>                                                        
             <xs:restriction base="xs:string">
-                <xs:enumeration value="replace"/>
-                <xs:enumeration value="before"/>
-                <xs:enumeration value="after"/>
+                <xs:enumeration value="replace">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en"><![CDATA[
+                            will replace the data in the search tag with the data in the add tag. (default)
+                        ]]>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="ru"><![CDATA[
+                            заменит данные в теге search на данные в теге add. (по умолчанию)
+                        ]]>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="ua"><![CDATA[
+                            замінить дані в тегу search на дані в тезі add. (за замовчуванням)
+                        ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="before">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en"><![CDATA[
+                            will insert the add data before the search data
+                        ]]>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="ru"><![CDATA[
+                            вставит добавить данные перед поиском данных
+                        ]]>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="ua"><![CDATA[
+                            вставить додані дані перед пошуковими даними
+                        ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="after">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en"><![CDATA[
+                            will insert the add data after the search data
+                        ]]>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="ru"><![CDATA[
+                            вставит добавить данные после поиска данных
+                        ]]>
+                        </xs:documentation>
+                        <xs:documentation xml:lang="ua"><![CDATA[
+                            додасть дані після пошуку даних
+                        ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:enumeration>
             </xs:restriction>
         </xs:simpleType>
     </xs:attribute>
